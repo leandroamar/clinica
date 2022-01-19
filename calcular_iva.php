@@ -87,19 +87,19 @@ if($_POST) {
                 <table class="table table-hover border">
                     <tr>
                         <th>IVA:</th>
-                        <td><?php echo $iva; ?></td>
+                        <td><?php echo $iva . "%"; ?></td>
                     </tr>
                     <tr>
                         <th>Precio sin IVA:</th>
-                        <td><?php echo $resPrecioSinIva; ?></td>
+                        <td><?php echo "$" . $resPrecioSinIva; ?></td>
                     </tr>
                     <tr>
                         <th>Precio con IVA:</th>
-                        <td><?php echo $resPrecioConIva; ?></td>
+                        <td><?php echo "$" . $resPrecioConIva; ?></td>
                     </tr>
                     <tr>
                         <th>IVA cantidad:</th>
-                        <td><?php echo $resIvaCantidad; ?></td>
+                        <td><?php echo "$" . $resIvaCantidad; ?></td>
                     </tr>
                 </table>
             </div>
