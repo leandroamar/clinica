@@ -29,9 +29,6 @@ echo "El sueldo neto es " .calcularNeto(50000). "<br>";
 
 
 
-
-?>
-
 <?php
 
 $aNotas = array(9, 8, 9.50, 4, 7, 8);
@@ -95,7 +92,9 @@ function contar($aArray) {
        $contador++;
    }
    return $contador;
- }
+}
+
+
 //Uso
 
 echo "Cantidad de notas " . contar($aNotas) . "<br>";
