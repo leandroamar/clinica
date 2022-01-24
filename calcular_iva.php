@@ -23,9 +23,9 @@ if($_POST) {
 
   if($precioConIva > 0){
     $resPrecioSinIva = $precioConIva / ($iva/100+1);
-} else {
+  } else {
     $resPrecioSinIva = $precioSinIva;
-}
+  }
 
   if ($resPrecioConIva > 0 && $resPrecioSinIva > 0) {
     $resIvaCantidad = $resPrecioConIva - $resPrecioSinIva;
@@ -91,11 +91,11 @@ if($_POST) {
                     </tr>
                     <tr>
                         <th>Precio sin IVA:</th>
-                        <td><?php echo "$" . $resPrecioSinIva; ?></td>
+                        <td><?php echo "$" . $resPrecioSinIva ; ?></td>
                     </tr>
                     <tr>
                         <th>Precio con IVA:</th>
-                        <td><?php echo "$" . $resPrecioConIva; ?></td>
+                        <td><?php echo "$" . $resPrecioConIva ; ?></td>
                     </tr>
                     <tr>
                         <th>IVA cantidad:</th>
