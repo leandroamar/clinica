@@ -34,10 +34,10 @@ class Persona{
 
 
 class Alumno extends Persona{
-    public $legajo;
-    public $notaPortfolio;
-    public $notaPhp;
-    public $notaProyecto;
+    protected $legajo;
+    protected $notaPortfolio;
+    protected $notaPhp;
+    protected $notaProyecto;
     
     public function _construct () {
         $this->notaPortfolio = 0.0;
@@ -67,15 +67,19 @@ class Alumno extends Persona{
         $this->$propiedad = $valor;
     }
 
+    public function __destruct(){
+        echo "Destruyendo el objeto " . $this->nombre . "<br>";
+    }
+
 }
 
 class Docente extends Persona {
-    public $especialidad;
+    private $especialidad;
     const ESPECIALIDAD_WP = "Wordpress";
-    const ESPECIALIDAD_ECO = "WEconomía aplicada";
+    const ESPECIALIDAD_ECO = "Economía aplicada";
     const ESPECIALIDAD_BBDD = "Base de datos";
 
-    public function _construct (){
+    public function _construct($dni, $nombre, $especialidad){
         $this->dni = $dni;
         $this->nombre = $nombre;
         $this->especialidad = $especialidad;
@@ -97,21 +101,25 @@ class Docente extends Persona {
         echo "Nacionalidad: " . $this->nacionalidad . "<br>";
         echo "Especialidad: " . $this->especialidad . "<br>";
     }
-    public function imprimirEspecialidadHabilitadas(){
+    public function imprimirEspecialidadesHabilitadas(){
         echo "Las especialidades habilitadas para un docente son:<br>";
         echo self::ESPECIALIDAD_WP . "<br>";
         echo self::ESPECIALIDAD_ECO . "<br>";
         echo self::ESPECIALIDAD_BBDD . "<br>";
+    }
+    
+    public function __destruct(){
+        echo "Destruyendo el objeto " . $this->nombre . "<br>";
     }
 
 }
 
 //PROGRAMA
 $alumno1 = new Alumno();
-$alumno1->nombre = "Juan Gonzalez";
-$alumno1->edad = 25;
-$alumno1->nacionalidad = "Argentino";
-$alumno1->notaPhp = 8;
+$alumno1->setNombre("Juan Gonzalez");
+$alumno1->setEdad(25);
+$alumno1->setNacionalidad("Argentino");
+$alumno1->notaPhp = 5 ;
 $alumno1->notaPortfolio = 7;
 $alumno1->notaProyecto = 9;
 $alumno1->imprimir();
@@ -125,7 +133,5 @@ $alumno2->notaProyecto = 7;
 $alumno2->imprimir();
 
 $docente1 = new Docente("23456789", "Cristian Paz", Docente::ESPECIALIDAD_ECO);
-print_r($docente1)
-
 
 ?>
