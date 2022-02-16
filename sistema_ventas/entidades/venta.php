@@ -146,3 +146,5 @@ class Venta {
         $mysqli->close();
         return $aResultado;
     }
+
+?>
