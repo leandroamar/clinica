@@ -7,17 +7,6 @@ $tipoProducto = new TipoProducto();
 $aTipoProducto = $tipoProducto->obtenerTodos();
 
 
-
-
-
-
-
-
-
-
-
-
-
 include_once("header.php"); ?>
 
 

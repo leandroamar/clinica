@@ -147,4 +147,47 @@ class Venta {
         return $aResultado;
     }
 
+    public function cargarGrilla(){
+        $mysqli = new mysqli(Config::BBDD_HOST, Config::BBDD_USUARIO, Config::BBDD_CLAVE, Config::BBDD_NOMBRE, Config::BBDD_PORT);
+        
+        $sql = "SELECT
+                A.idventa,
+                A.fecha,
+                A.cantidad,
+                A.fk_idcliente,
+                B.nombre AS nombre_cliente,
+                A.fk_idproducto,
+                A.total,
+                A.preciounitario,
+                C.nombre AS nombre_producto
+            FROM ventas A
+            INNER JOIN clientes B ON A.fk_idcliente = B.idcliente
+            INNER JOIN productos C ON A.fk_idproducto = C.idproducto
+            ORDER BY A.fecha DESC";
+        
+        if (!$resultado = $mysqli->query($sql)) {
+            printf("Error en query: %s\n", $mysqli->error . " " . $sql);
+        }
+
+        
+        $aResultado = array();
+        if($resultado){
+            while($fila = $resultado->fetch_assoc()){
+                $entidadAux = new Venta();
+                $entidadAux->idventa = $fila["idventa"];
+                $entidadAux->fk_idcliente = $fila["fk_idcliente"];
+                $entidadAux->nombre_cliente = $fila["nombre_cliente"];
+                $entidadAux->fk_idproducto = $fila["fk_idproducto"];
+                $entidadAux->nombre_producto = $fila["nombre_producto"];
+                $entidadAux->fecha = $fila["fecha"];
+                $entidadAux->cantidad = $fila["cantidad"];
+                $entidadAux->preciounitario = $fila["preciounitario"];
+                $entidadAux->total = $fila["total"];
+                $aResultado[] = $entidadAux;
+            }
+            $mysqli->close();
+            return $aResultado;
+        }
+    }
+}
 ?>
